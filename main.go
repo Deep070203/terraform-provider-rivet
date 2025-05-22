@@ -9,7 +9,7 @@ import (
 	"log"
 
 	"github.com/hashicorp/terraform-plugin-framework/providerserver"
-	"github.com/rivet-gg/terraform-provider-rivet/rivet/provider"
+	"UPDATE_TERRAFORM_PROVIDER_PATH/rivet/provider"
 )
 
 // Run "go generate" to format example terraform files and generate the docs for the registry/website
