@@ -5,6 +5,7 @@ import (
 	"context"
 	"encoding/json"
 	"fmt"
+	"github.com/UPDATE_PATH_TO_MODELS/models"
 	"github.com/hashicorp/terraform-plugin-framework-validators/stringvalidator"
 	"github.com/hashicorp/terraform-plugin-framework/path"
 	"github.com/hashicorp/terraform-plugin-framework/resource"
@@ -12,8 +13,8 @@ import (
 	"github.com/hashicorp/terraform-plugin-framework/schema/validator"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"github.com/rivet-gg/rivet/blob/main/sdks/api/full/go/client"
-	"github.com/rivet-gg/rivet/sdks/api/full/go/actors"
+	"https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/client"
+	"https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/actors/client"
 	"regexp"
 )
 
@@ -143,12 +144,12 @@ func (r *ActorsResource) Configure(ctx context.Context, req resource.ConfigureRe
 		return
 	}
 
-	client, ok := req.ProviderData.(*sdk.Supabase)
+	client, ok := req.ProviderData.(*Client.Actors)
 
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected Resource Configure Type",
-			fmt.Sprintf("Expected *sdk.Supabase, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *Client.Actors, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return
@@ -299,7 +300,7 @@ func (r *ActorsResource) Update(ctx context.Context, req resource.UpdateRequest,
 		
 		ActorsUpgradeActorRequest: req,
 	}
-	res, err := r.client.Update(ctx, request)
+	res, err := r.client.Upgrade(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {
@@ -362,7 +363,7 @@ func (r *ActorsResource) Delete(ctx context.Context, req resource.DeleteRequest,
 		Override_kill_timeout: override_kill_timeout,
 		
 	}
-	res, err := r.client.Delete(ctx, request)
+	res, err := r.client.Destroy(ctx, request)
 	if err != nil {
 		resp.Diagnostics.AddError("failure to invoke API", err.Error())
 		if res != nil && res.RawResponse != nil {

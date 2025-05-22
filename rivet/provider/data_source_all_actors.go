@@ -3,12 +3,13 @@ package provider
 import (
 	"context"
 	"fmt"
+	"github.com/UPDATE_PATH_TO_MODELS/models"
 	"github.com/hashicorp/terraform-plugin-framework/datasource"
 	"github.com/hashicorp/terraform-plugin-framework/datasource/schema"
 	"github.com/hashicorp/terraform-plugin-framework/types"
 	"github.com/hashicorp/terraform-plugin-framework/types/basetypes"
-	"github.com/rivet-gg/rivet/blob/main/sdks/api/full/go/client"
-	"github.com/rivet-gg/rivet/sdks/api/full/go/actors"
+	"https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/client"
+	"https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/actors/client"
 )
 
 // Ensure provider defined types fully satisfy framework interfaces.
@@ -21,7 +22,7 @@ func NewActorsDataSource() datasource.DataSource {
 
 // ActorsDataSource is the data source implementation.
 type ActorsDataSource struct {
-	client *sdk.Supabase
+	client *Client.Actors
 }
 
 // ActorsDataSourceModel describes the data model.
@@ -95,12 +96,12 @@ func (r *ActorsDataSource) Configure(ctx context.Context, req datasource.Configu
 		return
 	}
 
-	client, ok := req.ProviderData.(*sdk.Supabase)
+	client, ok := req.ProviderData.(*Client.Actors)
 
 	if !ok {
 		resp.Diagnostics.AddError(
 			"Unexpected DataSource Configure Type",
-			fmt.Sprintf("Expected *sdk.Supabase, got: %T. Please report this issue to the provider developers.", req.ProviderData),
+			fmt.Sprintf("Expected *Client.Actors, got: %T. Please report this issue to the provider developers.", req.ProviderData),
 		)
 
 		return

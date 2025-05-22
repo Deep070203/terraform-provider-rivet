@@ -1,19 +1,26 @@
+sdk-client-path: https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/client
 resources:
   Actors:
+    resource-path: https://github.com/rivet-gg/rivet/blob/main/sdks/api/runtime/go/actors/client
     read:
       method: get
+      name: Get
       path: /actors/{actor}
     create:
       method: post
+      name: Create
       path: /actors
     update:
       method: post
+      name: Upgrade
       path: /actors/{actor}/upgrade
     delete:
       method: delete
+      name: Destroy
       path: /actors/{actor}
 
 datasources:
   Actors:
     read: /actors/{actor}
     list: /actors
+    list-name: List
