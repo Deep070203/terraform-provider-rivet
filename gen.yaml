@@ -1,0 +1,19 @@
+resources:
+  Actors:
+    read:
+      method: get
+      path: /actors/{actor}
+    create:
+      method: post
+      path: /actors
+    update:
+      method: post
+      path: /actors/{actor}/upgrade
+    delete:
+      method: delete
+      path: /actors/{actor}
+
+datasources:
+  Actors:
+    read: /actors/{actor}
+    list: /actors
